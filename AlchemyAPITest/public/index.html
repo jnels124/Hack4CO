@@ -47,6 +47,32 @@
             </div>
         {{/each}}
     </script>
+
+    <script id="email-template" type="text/handlebars-x">
+        <div id="container" style = "font-family: Tahoma, Geneva, sans-serif">
+            <p>So Rookie, ready to jump in and find the evil Dr. Claw? Here is all the information that you, yes YOU gathered:</p>
+
+            <h3>Topics you found:</h3>
+            {{#each topics}}
+            {{#if .}}
+            <p> <span> {{.}} </span> </p>
+            {{/if}}
+            {{/each}}
+
+            <h3> Articles you used to get your information: </h3>
+            {{#each urls}}
+            {{#if .}}
+            <p> <span> <a href='{{.}}'>{{.}}</a> </span> </p>
+            {{/if}}
+            {{/each}}
+
+            <h3> Here are some more clues to get you finding Dr. Claw </h3>
+            <h3> Here is the last known hideout of Dr. Claw (your local library): </h3>
+            <p> 10 W. Fourteenth Ave. Pkwy. <br> Denver, CO 80204 </p>
+            <h3>Here is a handy map to help you:</h3>
+
+            <img src="http://maps.google.com/maps/api/staticmap?center=39.7374458,-104.9881767&zoom=16&size=600x400&maptype=roadmap&sensor=false&language=&markers=color:red|label:none|39.7374458,-104.9881767" title="10 W. Fourteenth Ave. Pkwy. 80204 || Powered by MapsEasy.com" width="600" height="400" style="border:1px solid #CECECE;">
+    </script>
 </head>
 
 <body>

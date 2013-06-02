@@ -257,7 +257,7 @@ var events2 = [{
         ]
     }
 },{
-    leftPicture: { src: 'img/HappyCat-crop.jpg', activate: 'active' },
+    leftPicture: { src: 'img/happyCat-crop.jpg', activate: 'active' },
     rightPicture: { src: 'img/Grumpy-Cat-crop.jpg', activate: 'inactive' },
     input: {
         hotspots: [
@@ -341,14 +341,14 @@ var office1 = {
                 top: '249px',
                 onclick: 'render(office2)',
                 color: 'white',
-                text: "Yeah"
+                text: "Oh no!"
             }
         ]
     },
     dialog: {
         name: 'Detective HappyCat',
         lines: [
-            ".."
+            "The evil mastermind Doctor Claw is concocting a nefarious plan."
         ]
     },
     background: 'img/office.jpg'
@@ -362,14 +362,14 @@ var office2 = {
             {
                 top: '249px',
                 onclick: 'render(office3)',
-                text: "Yeah"
+                text: "He sounds really smart"
             }
         ]
     },
     dialog: {
         name: 'Detective HappyCat',
         lines: [
-            "..."
+            "He does his research so if we are going to have any hope of catching him then so should we."
         ]
     },
     background: 'img/office.jpg'
@@ -381,15 +381,15 @@ var office3 = {
         hotspots: [
             {
                 top: '249px',
-                onclick: 'render(office4)',
-                text: "Yeah"
+                onclick: 'render(pickTopic)',
+                text: "Lemme think..."
             }
         ]
     },
     dialog: {
         name: 'Detective HappyCat',
         lines: [
-            "...."
+            "If you were a research savy individual what would you be interested in?"
         ]
     },
     background: 'img/office.jpg'
@@ -401,19 +401,23 @@ var office4 = {
     input: {
         hotspots: [
             {
-                top: '249px',
-                onclick: 'render(pickTopic)',
-                text: "Yeah"
+                top: '200px',
+                onclick: 'window.location = "http://www.alchemyapi.com/"',
+                text: "Powered by Alchemy"
+            },
+            {
+                top: '250px',
+                onclick: 'window.location = "http://sendgrid.com/"',
+                text: "And Sendgrid"
             }
         ]
     },
     dialog: {
         name: 'Detective HappyCat',
         lines: [
-            "....."
+            "Your a natural, kid! If anyone can match Doctor Claw's genius level intellect, its you!"
         ]
-    },
-    background: 'img/office.jpg'
+    }
 };
 
 library = {
@@ -424,7 +428,7 @@ library = {
             {
                 top: '249px',
                 onclick: 'render(villain)',
-                text: "lol that sux."
+                text: "Yeah!"
             }
         ]
     },
@@ -445,7 +449,7 @@ villain = {
             {
                 top: '249px',
                 onclick: 'render(getEmail)',
-                text: "lol that sux."
+                text: "Uh oh."
             }
         ]
     },
@@ -468,7 +472,7 @@ getEmail = {
             },
             {
                 top: '249px',
-                onclick: 'render(library2)',
+                onclick: 'sendMail($("#email").val())',
                 text: "send me the dossier, chief!"
             }
         ]
@@ -482,3 +486,35 @@ getEmail = {
     },
     background: 'img/dpl-lg.jpg'
 };
+
+emailSent = {
+    leftPicture: { src: 'img/happyCat-crop.jpg', activate: 'active' },
+    rightPicture: { src: 'http://placekitten.com/250/253', activate: 'inactive' },
+    input: {
+        hotspots: [
+            {
+                top: '100px',
+                input: 'email'
+            },
+            {
+                top: '249px',
+                onclick: 'sendMail($("#email").val())',
+                text: "send me the dossier, chief!"
+            }
+        ]
+    },
+    dialog: {
+        name: 'Detective HappyCat',
+        lines: [
+            "You're gonna have to go in flat-foot.",
+            "Let me know your email and I'll send you a dossier for your first real mission."
+        ]
+    },
+    background: 'img/dpl-lg.jpg'
+};
+
+var clearInput = {
+    input: {
+        hotspots: [ ]
+    }
+}

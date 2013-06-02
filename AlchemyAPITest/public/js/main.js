@@ -2,9 +2,11 @@ $(function() {
     render(office1);
 });
 
+var urls = [];
 var eventCounter = 0;
 
 function render(content) {
+    $('#loading').hide();
     for (var id in content) {
         if (id == 'background') {
             $('body').css('background-image', 'url(' + content.background + ')');
@@ -33,6 +35,8 @@ function render(content) {
 }
 
 function adjudicate(keywords, url, success) {
+    $('#loading').show();
+    render(clearInput);
     var request = $.ajax({
         url: "/relevance",
         type: "post",
@@ -59,17 +63,18 @@ function increment(list) {
 
 function submitArticle(url) {
     adjudicate($('#topic').html().split(':')[1].substring(1), url, function(response) {
+        render(howToGoogle);
         response = $.parseJSON(response);
 
         console.log(response);
 
-        if (response.relevance < .3) {
-            render(irrelevant);
+        if (response.related.length == 0 || response.relevance < .3) {
+            render(shuffleOne(irrelevant));
             return;
         }
 
         if (response.relevance < .6) {
-            render(weak);
+            render(shuffleOne(weak));
             return;
         }
 
@@ -78,6 +83,7 @@ function submitArticle(url) {
             return;
         }
 
+        urls.push(encodeURI(url));
         moreSpecific.input.hotspots = [];
         var top = 200;
         for (var topic in response.related) {
@@ -103,4 +109,23 @@ function submitArticle(url) {
 function appendTopic(topic) {
     $('#topic').append(' ' + topic);
     render(howToGoogle);
+}
+
+function sendMail(email) {
+    $('#loading').show();
+    render(clearInput);
+    $.ajax({
+        url: "/sendmail",
+        type: "post",
+        data: {
+            email: email,
+            body: Handlebars.compile($('#email-template').html())({
+                urls: urls,
+                topics: $('#topic').html().split(':')[1].split(' ')
+            })
+        },
+        success: function() {
+            render(office4);
+        }
+    });
 }

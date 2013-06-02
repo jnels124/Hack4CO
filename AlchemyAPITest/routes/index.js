@@ -17,7 +17,6 @@
 
  var googleBook = "https://www.googleapis.com/books/v1/volumes?q=";
  var google_api_key = '&key=AIzaSyATwwTIasX6mmpLRtptzL_zI9bQ0PxRX-s';
- sendGrid('jnels124@msudenver.edu');
 
 
  exports.index = function(req, res){
@@ -298,16 +297,24 @@ function getBooks( allBooks, words ) {
 
 }
 
-function sendGrid ( email ) {
+function sendGrid (email, body) {
 	var sendgrid = new SendGrid(sendgrid_name, sendgrid_key);
 	sendgrid.send({
 		to: email,
 		from: 'jessetnelson89@comcast.net',
-		subject: 'Hello World',
-		text: 'My first email through SendGrid'
+		subject: 'Dossier',
+		html: body
 	}, function(success, message) {
 		if (!success) {
 			console.log(message);
 		}
 	});
+}
+
+exports.mail_handler = function(req, res) {
+	var body = req.body.body;
+	var email = req.body.email;
+
+	sendGrid(email, body)
+	res.send('{ status: "ok" }');
 }
