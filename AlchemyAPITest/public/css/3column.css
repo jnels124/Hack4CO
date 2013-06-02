@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    height: 100%;
+    max-height: 100%;
+}
+
+#framecontentLeft, #framecontentRight{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 250px; /*Width of left frame div*/
+    height: 100%;
+    overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+    color: white;
+}
+
+#framecontentRight{
+    left: auto;
+    right: 0;
+    width: 250px; /*Width of right frame div*/
+    overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+    color: white;
+}
+
+#maincontent{
+    position: auto;
+    top: 0;
+    left: 250px; /*Set left value to WidthOfLeftFrameDiv*/
+    right: 250px; /*Set right value to WidthOfRightFrameDiv*/
+    bottom: 0;
+    overflow: hidden;
+}
+
+.innertube{
+    margin: 15px; /*Margins for inner DIV inside each DIV (to provide padding)*/
+    overflow: hidden;
+}
+
+* html body{ /*IE6 hack*/
+    padding: 0 150px 0 200px; /*Set value to (0 WidthOfRightFrameDiv 0 WidthOfLeftFrameDiv)*/
+}
+
+* html #maincontent{ /*IE6 hack*/
+    height: 100%;
+    width: 100%;
+}

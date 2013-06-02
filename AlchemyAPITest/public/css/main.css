@@ -1,0 +1,90 @@
+.hotspot {
+    position: fixed;
+    font-size: 3em;
+    width: 100%;
+    text-align: center;
+}
+
+.hotspot input {
+    width: auto;
+    height: 1em;
+    font-size: 1em;
+    border: 1px solid #cccccc;
+}
+
+.hotspot a:link { 
+	color: white;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black; 
+	text-decoration: none;}
+.hotspot a:visited { 
+	color: white; 
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black; 
+	text-decoration: none;}
+.hotspot a:hover { 
+    color: white; 
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black; 
+	text-decoration: none;}
+.hotspot a:active { 
+    color: white; 
+	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black; 
+	text-decoration: none;}
+.active {
+    opacity: 1.0;
+}
+.inactive {
+    opacity: 0.0;
+}
+.line {
+    font-size: 3em;
+    line-height: 1em;
+}
+
+#leftPicture {
+    position: fixed;
+    bottom: 0;
+    float: left;
+}
+
+#rightPicture {
+    position: fixed;
+    bottom: 0;
+    float: right;
+}
+
+#input {
+
+}
+
+#dialog {
+    position: fixed;
+    bottom: 0;
+    background-color: rgba(43,43,43,0.5);
+    left: 250px;
+    right: 250px;
+    padding: 0 20px;
+    color: #E8E8E8;
+}
+
+#topic {
+    position: fixed;
+	background-color: rgba(43,43,43,0.5);
+    top: 0;
+	left: 250px;
+	right: 250px;
+	font-size: 2em;
+    padding: 15px 15px;
+    color: #E8E8E8;	
+}
+
+body {
+    background-size: 100%;
+	}
+
+#background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+}
+
+.stretch { min-width:100%; min-height:100%; width:auto; height:auto; }

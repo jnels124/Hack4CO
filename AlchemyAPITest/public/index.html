@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Great Cat Detective</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/3column.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+
+    <script src="js/lib/jquery-1.10.1.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/handlebars.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/biased.js"></script>
+    <script src="js/good.js"></script>
+    <script src="js/irrelevant.js"></script>
+    <script src="js/weak.js"></script>
+    <script src="js/main.js"></script>
+
+    <script id="leftPicture-template" type="text/handlebars-x">
+        <img src='{{src}}' class='{{activate}}'>
+    </script>
+
+    <script id="rightPicture-template" type="text/handlebars-x">
+        <img src='{{src}}' class='{{activate}}'>
+    </script>
+
+    <script id="dialog-template" type="text/handlebars-x">
+        <h3 class='line'>{{name}}</h3>
+        <ul>
+            {{#each lines}}
+                <li class='line'>{{.}}</li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <script id="input-template" type="text/handlebars-x">
+        {{#each hotspots}}
+            <div class='hotspot' style='top: {{top}}' >
+                {{#if input}}
+                    <input id='{{input}}' type='text' value='{{input}}'></input>
+                {{else}}
+                    <a href='#' onclick='{{onclick}};return false'>{{text}}</a>
+                {{/if}}
+            </div>
+        {{/each}}
+    </script>
+</head>
+
+<body>
+
+<div id="framecontentLeft">
+    <div id="leftPicture"></div>
+</div>
+
+<div id="framecontentRight">
+    <div id="rightPicture"></div>
+</div>
+
+<div id="maincontent">
+    <div class="innertube">
+        <div id="input"></div>
+        <div id="topic">topic: </div>
+        <div id="dialog"></div>
+    </div>
+</div>
+</body>
+</html>
