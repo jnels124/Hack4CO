@@ -1,12 +1,19 @@
 {
   "name": "application-name",
-  "version": "0.0.1",
+  "version": "0.0.1-2",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
+    "request": "*",
+    "stylus": "*",
+    "sendgrid": "*",
     "express": "3.2.4",
     "jade": "*"
+  },
+  "subdomain": "great-cat-detective",
+  "engines": {
+    "node": "0.8.x"
   }
 }
