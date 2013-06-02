@@ -32,15 +32,16 @@ function render(content) {
     }
 }
 
-function adjudicate(keyword, url) {
-    var ret = {
-        relevance: .9, //Math.random(),
-        sentiment: .1, //Math.random(),
-        related: ['One', 'Two', 'Three']
-    };
-
-    console.log(ret);
-    return ret;
+function adjudicate(keywords, url, success) {
+    var request = $.ajax({
+        url: "/relevance",
+        type: "post",
+        data: {
+            keywords: keywords,
+            url: url
+        },
+        success: success
+    });
 }
 
 function shuffleOne(list) {
@@ -57,42 +58,46 @@ function increment(list) {
 }
 
 function submitArticle(url) {
-    var response = adjudicate(null, url);
+    adjudicate($('#topic').html().split(':')[1].substring(1), url, function(response) {
+        response = $.parseJSON(response);
 
-    if (response.relevance < .3) {
-        render(irrelevant);
-        return;
-    }
+        console.log(response);
 
-    if (response.relevance < .6) {
-        render(weak);
-        return;
-    }
+        if (response.relevance < .3) {
+            render(irrelevant);
+            return;
+        }
 
-    if (Math.abs(response.sentiment) > .5) {
-        render(shuffleOne(biased));
-        return;
-    }
+        if (response.relevance < .6) {
+            render(weak);
+            return;
+        }
 
-    moreSpecific.input.hotspots = [];
-    var top = 200;
-    for (var topic in response.related) {
-        moreSpecific.input.hotspots.push({
-            top: top + 'px',
-            text: response.related[topic],
-            onclick: 'appendTopic("' + response.related[topic] + '")'
-        });
-        top += 50;
-    }
-     
-    eventCounter++;
+        if (Math.abs(response.sentiment) > .5) {
+            render(shuffleOne(biased));
+            return;
+        }
 
-	if (eventCounter >= 4) {
-	    render(library);
-	    return;
-	}
+        moreSpecific.input.hotspots = [];
+        var top = 200;
+        for (var topic in response.related) {
+            moreSpecific.input.hotspots.push({
+                top: top + 'px',
+                text: response.related[topic],
+                onclick: 'appendTopic("' + response.related[topic] + '")'
+            });
+            top += 50;
+        }
 
-    render(shuffleOne(good));
+        eventCounter++;
+
+        if (eventCounter >= 4) {
+            render(library);
+            return;
+        }
+
+        render(shuffleOne(good));
+    });
 }
 
 function appendTopic(topic) {

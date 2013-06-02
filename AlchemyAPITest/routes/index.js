@@ -26,18 +26,15 @@
  };
 
  exports.post_handler = function(req, res){
-
- 	var url = req['body']['urlInput'];
- 	var type = req['body']['type_of_response'];
- 	var keywords = req['body']['contentFind'];
+ 	var url = req.body.url;
+ 	var keywords = req.body.keywords;
 
  	console.log("KEYWORD: " + keywords);
 
- 	//relevance(keywords, url, res);
+ 	relevance(keywords, url, res);
  	//subject1_books( keywords, res );
 
  	//sendgrid('jnels124@msudenver.edu');
- 	res.render("./", { title: 'Express', keywords: "jesse", results: "gdfgdfgdfgd"});
  };
 
 
