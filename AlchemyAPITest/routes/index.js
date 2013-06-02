@@ -6,9 +6,9 @@
  var request = require('request');
  var SendGrid = require('sendgrid').SendGrid;
  var sendgrid_name = 'jnels124';
- var sendgrid_key = 'nuggets1';
+ var sendgrid_key = 'redacted';
  var url_call = "http://access.alchemyapi.com/calls/url/";
- var api_key = "5d94ddbd598dbd02d431d6fb9f91261f6b1fd88f";
+ var api_key = "redacted";
  var url_part = "&url=";
  var cquery_part = "&cquery=";
  var outputJSON = "&outputMode=json";
@@ -16,7 +16,7 @@
 
 
  var googleBook = "https://www.googleapis.com/books/v1/volumes?q=";
- var google_api_key = '&key=AIzaSyATwwTIasX6mmpLRtptzL_zI9bQ0PxRX-s';
+ var google_api_key = '&key=redacted';
 
 
  exports.index = function(req, res){
