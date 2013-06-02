@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  #wrapper
+     #title
+        h1= title
+     #form
+        form(method='post')
+           |Type in the URL to look for key words
+           div
+              input(type='radio', id='URLGetRankedKeywords', name='type_of_response', value='URLGetRankedKeywords') 
+              label(for='URLGetRankedKeywords') Keywords
+              br
+              input(type='radio', id='URLGetAuthor', name='type_of_response', value='URLGetAuthor') 
+              label(for='URLGetAuthor') Author
+              br
+              input(type='radio', id='URLGetConstraintQuery', name='type_of_response', value='URLGetConstraintQuery') 
+              label(for='URLGetConstraintQuery') Content Scraping
+              br
+              input(type='text', name='contentFind', id="contentFind", placeholder='put your Constraint Query Here!') 
+              br
+              input(type='text', name='urlInput', placeholder='Put your URL here') 
+              br
+              input(type='submit', value='Url Submit')
+     #results
+           div
+              <p>#{results}</p>
+
